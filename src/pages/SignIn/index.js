@@ -47,7 +47,7 @@ export default function SignIn() {
                 </Avatar>
 
                 <Typography component="h1" variant="h5">
-                    SignIn
+                    Sign In
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} className="form-signIn" >
                     <TextField
