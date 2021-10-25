@@ -1,0 +1,58 @@
+.container-profile{
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+}
+
+.box-profile{
+    width: 100%;
+    height: 100%;
+    padding-left: 80px;
+    padding-top: 70px;
+    padding-right: 10px;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    overflow: auto;
+}
+
+.box-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.text-form{
+    margin-bottom: 10px;
+}
+
+.box-form button{
+    background-color: #00bcd4;
+}
+
+.box-form button:hover{
+    background-color: #008394;
+}
+
+.logout{
+    padding: 5px 20px;
+    padding-right: 5px;
+}
+
+.logout button{
+    background-color: #00bcd4;
+}
+
+.logout button:hover{
+    background-color: #008394;
+}
+
+@media screen and (max-width: 600px) {
+    .box-profile{
+        padding-left: 50px;
+        padding-top: 50px;
+    }
+}
+    

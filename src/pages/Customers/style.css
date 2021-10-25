@@ -1,0 +1,34 @@
+.container-customers{
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+}
+
+.box-customers{
+    width: 100%;
+    height: 100%;
+    padding-left: 80px;
+    padding-top: 70px;
+    padding-right: 5px;
+    top: 0;
+    margin: 0;
+    bottom: 0;
+    position: fixed;
+    overflow: auto;
+}
+
+.box-form{
+    margin: 0;
+}
+
+.alert-form{
+    padding: 80px;
+}
+
+@media screen and (max-width: 600px) {
+    .box-customers{
+        padding-left: 50px;
+        padding-top: 50px;
+        margin: 0;
+    }
+}

@@ -1,0 +1,31 @@
+.toolbar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.icon-button:focus {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+}
+
+.content{
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+}
+
+.drawer{
+    display: flex;
+    height: 100%;
+    overflow-x: hidden;
+    z-index: 1;
+}
+
+.content a{
+    text-decoration: none;
+    color: #181C2E;
+}
