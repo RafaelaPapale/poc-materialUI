@@ -53,34 +53,39 @@ function AuthProvider({ children }) {
 
     async function signUp(email, password, nome) {
         setLoadingAuth(true);
-        await firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(async (value) => {
-                let uid = value.user.uid;
+        try {
+            await firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(async (value) => {
+                    let uid = value.user.uid;
 
-                await firebase.firestore().collection('users')
-                    .doc(uid).set({
-                        nome: nome,
-                        avatarUrl: null,
-                    })
-                    .then(() => {
-                        let data = {
-                            uid: uid,
+                    await firebase.firestore().collection('users')
+                        .doc(uid).set({
                             nome: nome,
-                            email: value.user.email,
-                            avatarUrl: null
-                        };
+                            avatarUrl: null,
+                        })
+                        .then(() => {
+                            let data = {
+                                uid: uid,
+                                nome: nome,
+                                email: value.user.email,
+                                avatarUrl: null
+                            };
 
-                        setUser(data);
-                        storageUser(data);
-                        setLoadingAuth(false);
-                        toast.success('Bem vindo a plataforma!')
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                        toast.error("Ops! Algo deu errado!")
-                        setLoadingAuth(false);
-                    })
-            })
+                            setUser(data);
+                            storageUser(data);
+                            setLoadingAuth(false);
+                            toast.success('Bem vindo a plataforma!')
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            toast.error("Ops! Algo deu errado!")
+                            setLoadingAuth(false);
+                        })
+                })
+        } catch(error){
+            console.log(error)
+            toast.error("Ops! Algo deu errado!")
+        }
     }
 
     function storageUser(data) {
