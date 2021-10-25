@@ -32,8 +32,6 @@ import firebase from '../../services/firebaseConnection';
 
 import './style.css';
 
-const listRef = firebase.firestore().collection('chamados').orderBy('created', 'desc');
-
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -119,16 +117,19 @@ TablePaginationActions.propTypes = {
 
 
 export default function Dashboard() {
+    const { showItem, setShowItem, user } = useContext(AuthContext);
+
     const [chamados, setChamados] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loadingMore, setLoadingMore] = useState(false);
     const [isEmpty, setIsEmpty] = useState(false);
     const [detail, setDetail] = useState();
-
-    const { showItem, setShowItem } = useContext(AuthContext);
+    const [clientId, setCLientId] = useState(user && user.uid);
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+
+    //const listRef = firebase.firestore().collection('chamados').orderBy('created', 'desc').equalTo(user.uid);
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
@@ -145,7 +146,8 @@ export default function Dashboard() {
 
     useEffect(() => {
         async function loadChamados() {
-            await listRef
+            await firebase.firestore().collection('chamados')
+                .orderBy('created', 'desc')
                 .get()
                 .then((snapshot) => {
                     updateState(snapshot);
@@ -168,16 +170,18 @@ export default function Dashboard() {
         if (!isCollectionEmpty) {
             let lista = [];
             snapshot.forEach((doc) => {
-                lista.push({
-                    id: doc.id,
-                    assunto: doc.data().assunto,
-                    cliente: doc.data().cliente,
-                    clienteId: doc.data().clienteId,
-                    created: doc.data().created,
-                    createdFormated: format(doc.data().created.toDate(), 'dd/MM/yyyy'),
-                    status: doc.data().status,
-                    complemento: doc.data().complemento
-                })
+                if(user.uid === doc.data().userId){
+                    lista.push({
+                        id: doc.id,
+                        assunto: doc.data().assunto,
+                        cliente: doc.data().cliente,
+                        clienteId: doc.data().clienteId,
+                        created: doc.data().created,
+                        createdFormated: format(doc.data().created.toDate(), 'dd/MM/yyyy'),
+                        status: doc.data().status,
+                        complemento: doc.data().complemento
+                    })
+                }
             })
             setChamados(chamados => [...chamados, ...lista]);
         }
@@ -278,7 +282,7 @@ export default function Dashboard() {
                                                     }}
                                                     className="button-eye"
                                                     onClick={() => toggleSearch(item)}>
-                                                    <VisibilityIcon sx={{ width: "70%", color:"white" }} />
+                                                    <VisibilityIcon sx={{ width: "70%", color: "white" }} />
                                                 </Button>
 
                                             </StyledTableCell>

@@ -82,7 +82,7 @@ function AuthProvider({ children }) {
                             setLoadingAuth(false);
                         })
                 })
-        } catch(error){
+        } catch (error) {
             console.log(error)
             toast.error("Ops! Algo deu errado!")
         }

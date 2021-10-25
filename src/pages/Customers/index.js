@@ -54,7 +54,7 @@ export default function Customers() {
         <Box className="container-customers">
             <Header nome="Clientes" />
             <Box component="form" className="box-customers" onSubmit={handleAdd}>
-                <Box className="box-form" >
+                <Box className="box-form-customers" >
                     <TextField
                         id="outlined-basic"
                         label="Nome da empresa"

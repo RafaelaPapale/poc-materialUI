@@ -16,7 +16,7 @@
     overflow: auto;
 }
 
-.box-form{
+.box-form-profile{
     display: flex;
     flex-direction: column;
     justify-content: center;

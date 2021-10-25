@@ -42,7 +42,7 @@ export default function Profile() {
         <Box className="container-profile">
             <Header nome="Seu perfil" />
             <Box component="form" className="box-profile" onSubmit={handleSave}>
-                <Box className="box-form" >
+                <Box className="box-form-profile" >
                     <TextField
                         id="outlined-basic"
                         label="Nome"
