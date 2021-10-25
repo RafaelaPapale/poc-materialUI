@@ -14,7 +14,6 @@ export default function Customers() {
     const [nomeFantasia, setNomeFantasia] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [endereco, setEndereco] = useState('');
-    const [open, setOpen] = useState(false);
 
     async function handleAdd(e) {
         e.preventDefault();
@@ -30,7 +29,6 @@ export default function Customers() {
                     setCnpj('');
                     setEndereco('');
                     toast.info('Empresa cadastrada com sucesso!');
-                    setOpen(true);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -40,15 +38,6 @@ export default function Customers() {
             toast.error('Preencha todos os campos!');
         }
     }
-
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setOpen(false);
-    };
-
 
     return (
         <Box className="container-customers">
@@ -79,15 +68,9 @@ export default function Customers() {
                         sx={{ mb: "25px" }}
                     />
 
-                    <Button open={open} type="submit" fullWidth variant="contained">
+                    <Button type="submit" fullWidth variant="contained">
                         Registrar
                     </Button>
-
-                    <Snackbar open={open} autoHideDuration={1000} onClose={handleClose} className="alert-form">
-                        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                            Cadastro realizado com sucesso!
-                        </Alert>
-                    </Snackbar>
                 </Box>
             </Box>
         </Box>
