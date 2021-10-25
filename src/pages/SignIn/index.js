@@ -81,7 +81,7 @@ export default function SignIn() {
                 </Box>
 
                 <Grid sx={{p:"20px"}}>
-                    <Link to="/">Já possui uma conta? Entre!</Link>
+                    <Link to="/register">Não possui uma conta? Crie!</Link>
                 </Grid>
             </Box>
         </Grid>
