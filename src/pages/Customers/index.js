@@ -6,6 +6,7 @@ import { useState } from 'react';
 import firebase from '../../services/firebaseConnection';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import { toast } from 'react-toastify';
 
 import './style.css';
 
@@ -28,13 +29,15 @@ export default function Customers() {
                     setNomeFantasia('');
                     setCnpj('');
                     setEndereco('');
+                    toast.info('Empresa cadastrada com sucesso!');
                     setOpen(true);
                 })
                 .catch((error) => {
                     console.log(error);
+                    toast.error('Erro ao cadastrar empresa!');
                 })
         } else {
-            alert('Preencha todos os campos!');
+            toast.error('Preencha todos os campos!');
         }
     }
 
