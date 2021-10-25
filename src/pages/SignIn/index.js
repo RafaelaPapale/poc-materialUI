@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/auth';
+import { Link } from 'react-router-dom';
 
 import './style.css';
 
@@ -78,6 +79,8 @@ export default function SignIn() {
                         {loadingAuth ? 'Carregando...' : 'Acessar'}
                     </Button>
                 </Box>
+
+                <Link to="/register">Não possui uma conta? Crie!</Link>
             </Box>
         </Grid>
 
