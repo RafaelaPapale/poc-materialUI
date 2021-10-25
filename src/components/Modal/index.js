@@ -23,14 +23,14 @@ const style = {
 
 export default function ModalChamado({ conteudo }) {
     const { setShowItem } = useContext(AuthContext);
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setShowItem(false);
         setOpen(false);
     }
     return (
-        <Modal open={open}
+        <Modal open={handleOpen}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description">
